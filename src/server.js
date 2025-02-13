@@ -6,8 +6,8 @@ const routes = require('./routes');
  * 
  * @async
  * @function init
- * @returns {Promise<void>} Mengembalikan promise yang diselesaikan ketika server berhasil dimulai.
- * @throws {Error} Jika terjadi kesalahan saat memulai server.
+ * @returns {Promise<void>} Tidak mengembalikan nilai, hanya memulai server.
+ * @description Fungsi ini membuat instance server Hapi, menetapkan rute, dan memulai server pada port 9000 di localhost. Setelah server berjalan, URL server akan dicetak ke konsol.
  */
 const init = async () => {
   const server = Hapi.server({

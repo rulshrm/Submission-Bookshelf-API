@@ -1,6 +1,13 @@
 const books = require("./books");
 const { nanoid } = require("nanoid");
 
+/**
+ * Handler untuk menambahkan buku baru.
+ * 
+ * @param {Object} request - Objek permintaan Hapi.
+ * @param {Object} h - Objek respons Hapi.
+ * @returns {Object} Respons Hapi dengan status dan data buku.
+ */
 const addBookHandler = (request, h) => {
   const {
     name,
@@ -32,7 +39,7 @@ const addBookHandler = (request, h) => {
     const id = nanoid(16);
     const insertedAt = new Date().toISOString();
     const updatedAt = insertedAt;
-    const finished = pageCount === readPage ? true : false;
+    const finished = pageCount === readPage;
 
     const newBook = {
       id,
@@ -74,6 +81,13 @@ const addBookHandler = (request, h) => {
   }
 };
 
+/**
+ * Handler untuk mendapatkan semua buku.
+ * 
+ * @param {Object} request - Objek permintaan Hapi.
+ * @param {Object} h - Objek respons Hapi.
+ * @returns {Object} Respons Hapi dengan status dan data buku.
+ */
 const getAllBooksHandler = (request, h) => {
   if (books.length > 0) {
     const { name, reading, finished } = request.query;
@@ -148,8 +162,15 @@ const getAllBooksHandler = (request, h) => {
     response.code(200);
     return response;
   }
-}
+};
 
+/**
+ * Handler untuk mendapatkan buku berdasarkan ID.
+ * 
+ * @param {Object} request - Objek permintaan Hapi.
+ * @param {Object} h - Objek respons Hapi.
+ * @returns {Object} Respons Hapi dengan status dan data buku.
+ */
 const getBookByIdHandler = (request, h) => {
   const { id } = request.params;
 
@@ -170,8 +191,15 @@ const getBookByIdHandler = (request, h) => {
   });
   response.code(404);
   return response;
-}
+};
 
+/**
+ * Handler untuk mengedit buku berdasarkan ID.
+ * 
+ * @param {Object} request - Objek permintaan Hapi.
+ * @param {Object} h - Objek respons Hapi.
+ * @returns {Object} Respons Hapi dengan status dan pesan.
+ */
 const editBookByIdHandler = (request, h) => {
   const { id } = request.params;
 
@@ -232,8 +260,15 @@ const editBookByIdHandler = (request, h) => {
   });
   response.code(404);
   return response;
-}
+};
 
+/**
+ * Handler untuk menghapus buku berdasarkan ID.
+ * 
+ * @param {Object} request - Objek permintaan Hapi.
+ * @param {Object} h - Objek respons Hapi.
+ * @returns {Object} Respons Hapi dengan status dan pesan.
+ */
 const deleteBookByIdHandler = (request, h) => {
   const { id } = request.params;
 
@@ -255,6 +290,6 @@ const deleteBookByIdHandler = (request, h) => {
   });
   response.code(404);
   return response;
-}
+};
 
 module.exports = { addBookHandler, getAllBooksHandler, getBookByIdHandler, editBookByIdHandler, deleteBookByIdHandler };
