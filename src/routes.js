@@ -1,27 +1,36 @@
-module.exports.routes = [
+const {
+  addBookHandler,
+  getAllBooksHandler,
+  getBookByIdHandler,
+  editBookByIdHandler,
+  deleteBookByIdHandler,
+} = require("./handler");
+const routes = [
   {
-    method: 'POST',
-    path: '/books',
-    handler: () => {}
+    method: "POST",
+    path: "/books",
+    handler: addBookHandler,
   },
   {
-    method: 'GET',
-    method: '/books',
-    handler: () => {}
+    method: "GET",
+    path: "/books",
+    handler: getAllBooksHandler,
   },
   {
-    method: 'GET',
-    method: '/books/{id}',
-    handler: () => {}
+    method: "GET",
+    path: "/books/{id}",
+    handler: getBookByIdHandler,
   },
   {
-    method: 'PUT',
-    method: '/books/{id}',
-    handler: () => {}
+    method: "PUT",
+    path: "/books/{id}",
+    handler: editBookByIdHandler,
   },
   {
-    method: 'DELETE',
-    method: '/books/{id}',
-    handler: () => {}
-  }
+    method: "DELETE",
+    path: "/books/{id}",
+    handler: deleteBookByIdHandler,
+  },
 ];
+
+module.exports = routes;
